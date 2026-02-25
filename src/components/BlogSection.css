@@ -24,7 +24,7 @@
 .blog-section__main-title {
     font-family: "Instrument Sans", sans-serif;
     /* VERY IMPORTANT */
-    font-size: 42px;
+    font-size: 28px;
     /* Larger like Prestige */
     font-weight: 400;
     letter-spacing: 0.18em;
@@ -32,6 +32,7 @@
     text-transform: uppercase;
     color: #3a3a3a;
     /* Softer than pure black */
+    margin:20px 0 0;
 }
 
 .blog-grid {
