@@ -1,46 +1,66 @@
-import './ScrollingContent.css';
+import React from "react";
+import "./ScrollingContent.css";
 
-const ScrollingContent = () => {
-    const items1 = [
-        { text: 'NEW: LE SAC BAGUETTE', image: '/Scrolling_content_-_home_-_sac._-baguette.jpg' },
-    ];
+const ScrollingText: React.FC = () => {
+  const topLineContent = (
+    <>
+      {[...Array(2)].map((_, i: number) => (
+        <div key={i} className="scroll-item">
+          <span className="scroll-text">
+            NEW: LE SAC BAGUETTE
+          </span>
 
-    const items2 = [
-        { text: 'SHOP NEW ARRIVALS', image: '/Scrolling_content_2.jpg' },
-    ];
+          <div className="scroll-image">
+            <img
+              src="https://prestige-theme-allure.myshopify.com/cdn/shop/files/Scrolling_content_-_home_-_sac._-baguette.jpg?v=1680765474&width=500"
+              alt="Le Sac Baguette"
+              className="image-contain"
+            />
+          </div>
+        </div>
+      ))}
+    </>
+  );
 
-    // Duplicate for seamless loop
-    const row1 = [...items1, ...items1, ...items1, ...items1, ...items1, ...items1, ...items1, ...items1];
-    const row2 = [...items2, ...items2, ...items2, ...items2, ...items2, ...items2, ...items2, ...items2];
+  const bottomLineContent = (
+    <>
+      {[...Array(2)].map((_, i: number) => (
+        <div key={i} className="scroll-item bottom-item">
+          <div className="scroll-image">
+            <img
+              src="https://prestige-theme-allure.myshopify.com/cdn/shop/files/Scrolling_content_-_home_-_new.jpg?v=1680765940&width=500"
+              alt="New Arrivals"
+              className="image-contain"
+            />
+          </div>
 
-    return (
-        <section className="scrolling-content-section">
-            <div className="scrolling-content">
-                <div className="scrolling-content__track scrolling-content__track--primary">
-                    {row1.map((item, index) => (
-                        <div key={`r1-${index}`} className="scrolling-content__item">
-                            <span className="scrolling-content__text">{item.text}</span>
-                            {item.image && (
-                                <img src={item.image} alt="" className="scrolling-content__image" />
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <div className="scrolling-content">
-                <div className="scrolling-content__track scrolling-content__track--secondary">
-                    {row2.map((item, index) => (
-                        <div key={`r2-${index}`} className="scrolling-content__item">
-                            <span className="scrolling-content__text">{item.text}</span>
-                            {item.image && (
-                                <img src={item.image} alt="" className="scrolling-content__image" />
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+          <span className="scroll-text">
+            SHOP NEW ARRIVALS
+          </span>
+        </div>
+      ))}
+    </>
+  );
+
+  return (
+    <section className="scroll-section">
+      {/* Top Line */}
+      <div className="scroll-line top-line">
+        <div className="scroll-track marquee-left">
+          {topLineContent}
+          {topLineContent}
+        </div>
+      </div>
+
+      {/* Bottom Line */}
+      <div className="scroll-line bottom-line">
+        <div className="scroll-track marquee-right">
+          {bottomLineContent}
+          {bottomLineContent}
+        </div>
+      </div>
+    </section>
+  );
 };
 
-export default ScrollingContent;
+export default ScrollingText;
