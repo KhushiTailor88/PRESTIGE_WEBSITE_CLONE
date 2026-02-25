@@ -1,0 +1,127 @@
+/* =========================
+   SECTION WRAPPER
+========================= */
+.image-overlay {
+    width: 100%;
+    position: relative;
+    font-family: "Instrument Sans", sans-serif;
+    background-color: #efefef;
+    padding-top: 0;
+}
+
+/* =========================
+   IMAGE CONTAINER
+========================= */
+.image-overlay__inner {
+    position: relative;
+    height: clamp(22rem, 34vw, 42rem);
+    width: 100%;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+/* =========================
+   IMAGE
+========================= */
+.image-overlay__image-container {
+    width: 100%;
+    height: 100%;
+}
+
+.image-overlay__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .9s ease;
+}
+
+/* subtle premium zoom */
+.image-overlay__inner:hover .image-overlay__image {
+    transform: scale(1.04);
+}
+
+/* =========================
+   OVERLAY CONTENT
+========================= */
+.image-overlay__content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+/* =========================
+   TEXT BOX
+========================= */
+.image-overlay__text-box {
+    position: absolute;
+    left: 80px;
+    bottom: 64px;
+    max-width: 520px;
+    color: #fff;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+.image-overlay__subtitle {
+    font-size: 12px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    opacity: .9;
+}
+
+.image-overlay__title {
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-top: 20px;
+    line-height: 1.15;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.btn-white {
+    display: inline-block;
+    background: linear-gradient(to right, transparent 50%, #fff 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    color: #000;
+    border: 1px solid #fff;
+    padding: 9.4px 27px;
+    font-size: 13px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    transition: background-position 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+    margin: 32px 0px 0px;
+}
+
+.btn-white:hover {
+    background-position: left bottom;
+    border-color: #fff;
+    color: #fff;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:768px) {
+
+    .image-overlay__inner {
+        height: 420px;
+    }
+
+    .image-overlay__text-box {
+        left: 24px;
+        bottom: 40px;
+        max-width: 90%;
+    }
+
+    .image-overlay__title {
+        font-size: 32px;
+        letter-spacing: .12em;
+    }
+}

@@ -1,0 +1,293 @@
+/* ===============================
+   SECTION
+================================= */
+
+.our-looks {
+    background-color: #EFEFEF;
+    padding: 120px 0;
+}
+
+.our-looks__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ===============================
+   HEADER
+================================= */
+
+.our-looks__header {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.our-looks__label {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #777;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.our-looks__title {
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-family: "Instrument Sans", sans-serif;
+    color: #1c1c1c;
+}
+
+/* ===============================
+   GRID LAYOUT
+================================= */
+
+.our-looks__grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    /* uneven luxury layout */
+    gap: 120px;
+    /* big breathing space */
+    align-items: center;
+}
+
+/* ===============================
+   LIFESTYLE IMAGE
+================================= */
+
+.our-looks__image-wrapper {
+    position: relative;
+}
+
+.our-looks__image-container {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    /* tall image like Shopify */
+    overflow: hidden;
+}
+
+.our-looks__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ===============================
+   HOTSPOTS
+================================= */
+
+.our-looks__hotspot {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    margin-top: -12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.our-looks__hotspot-inner {
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(28, 28, 28, 0.15);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.our-looks__hotspot:hover .our-looks__hotspot-inner,
+.our-looks__hotspot--active .our-looks__hotspot-inner {
+    transform: scale(1.5);
+    background-color: #1c1c1c;
+    box-shadow: 0 0 0 2px #fff;
+}
+
+/* ===============================
+   NAVIGATION ARROWS
+================================= */
+
+.our-looks__nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.our-looks__nav-button:hover {
+    background-color: #1c1c1c;
+    color: #fff;
+    border-color: #1c1c1c;
+}
+
+.our-looks__nav-button--prev {
+    left: 25px;
+}
+
+.our-looks__nav-button--next {
+    right: 25px;
+}
+
+/* ===============================
+   PRODUCT SECTION
+================================= */
+
+.our-looks__product {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.our-looks__product-label {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #999;
+    display: block;
+    margin-bottom: 40px;
+}
+
+.our-looks__product-image-wrapper {
+    position: relative;
+    margin-bottom: 40px;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.our-looks__product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-smooth), opacity var(--transition-smooth);
+}
+
+.our-looks__product-image--primary {
+    opacity: 1;
+}
+
+.our-looks__product-image--hover {
+    opacity: 0;
+}
+
+.our-looks__product-image-wrapper:hover .our-looks__product-image {
+    transform: scale(1.05);
+}
+
+.our-looks__product-image-wrapper:hover .our-looks__product-image--primary {
+    opacity: 0;
+}
+
+.our-looks__product-image-wrapper:hover .our-looks__product-image--hover {
+    opacity: 1;
+}
+
+.our-looks__product-name {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-family: "Instrument Sans", sans-serif;
+    color: #1c1c1c;
+}
+
+.our-looks__product-price {
+    font-size: 15px;
+    margin-bottom: 40px;
+    color: #666;
+}
+
+/* ===============================
+   CTA BUTTON
+================================= */
+
+.our-looks__cta {
+    display: inline-block;
+    background: linear-gradient(to right, transparent 50%, #1c1c1c 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    color: #fff;
+    padding: 16px 52px;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid #1c1c1c;
+    cursor: pointer;
+    transition: background-position 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+.our-looks__cta:hover {
+    background-position: left bottom;
+    color: #1c1c1c;
+}
+
+/* ===============================
+   PAGINATION DOTS
+================================= */
+
+.our-looks__pagination {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 40px;
+}
+
+.our-looks__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #d0d0d0;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.our-looks__dot--active {
+    background-color: #1c1c1c;
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 992px) {
+
+    .our-looks__grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .our-looks__image-container {
+        aspect-ratio: 1 / 1;
+    }
+
+    .our-looks__header {
+        margin-bottom: 60px;
+    }
+
+    .our-looks {
+        padding: 80px 0;
+    }
+}

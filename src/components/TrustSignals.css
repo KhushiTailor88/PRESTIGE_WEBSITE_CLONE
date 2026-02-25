@@ -1,0 +1,121 @@
+.trust-signals {
+    background-color: #EFEFEF;
+    
+}
+
+.trust-signals.section-spacing--tight {
+    padding: 40px 0;
+}
+
+.trust-signals .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.trust-signals__carousel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+}
+
+.trust-signals__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+}
+
+.trust-signals__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+}
+
+.trust-signals__icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1;
+}
+
+.trust-signals__content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.trust-signals__title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+
+.trust-signals__prose {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #666;
+    max-width: 240px;
+    margin: 0 auto;
+}
+
+.trust-signals__prose p {
+    margin: 0;
+}
+
+/* Pagination for mobile (hidden by default) */
+.trust-signals__pagination {
+    display: none;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.trust-signals__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 0;
+}
+
+.trust-signals__dot[aria-current="true"] {
+    background-color: var(--color-text);
+}
+
+@media screen and (max-width: 999px) {
+    .trust-signals__carousel {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 20px;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .trust-signals__carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 0;
+        margin: 0 -20px;
+        padding-bottom: 10px;
+        scrollbar-width: none;
+    }
+
+    .trust-signals__carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    .trust-signals__item {
+        flex: 0 0 100%;
+        scroll-snap-align: center;
+        padding: 0 20px;
+    }
+
+    .trust-signals__pagination {
+        display: flex;
+    }
+}

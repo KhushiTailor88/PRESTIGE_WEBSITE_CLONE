@@ -1,0 +1,62 @@
+.brand-mission1 {
+    text-align: center;
+    background-color: #EFEFEF;
+    padding: 0 20px;
+    /* removed top/bottom padding */
+}
+
+.container1 {
+    max-width: 800px;
+    /* similar to max-w-4xl */
+    margin: 0 auto;
+}
+
+.brand-mission__icon1 {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.brand-mission__icon1 img {
+    width: 120px;
+    height: auto;
+    opacity: 0.9;
+}
+
+/* TITLE */
+.brand-mission__title {
+    font-size: 32px;
+    font-weight: 300;
+    /* lighter like font-light */
+    letter-spacing: 0.15em;
+    /* match tracking-[0.15em] */
+    line-height: 1.6;
+    text-transform: uppercase;
+    color: #1c1c1c;
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+}
+
+/* LINKS */
+.brand-mission__links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    /* gap-10 equivalent */
+}
+
+.brand-mission__links .link {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 300;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #1c1c1c;
+}
+
+.brand-mission__links .link:hover {
+    border-bottom: 1px solid #000;
+}

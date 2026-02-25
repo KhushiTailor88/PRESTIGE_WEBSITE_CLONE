@@ -1,0 +1,200 @@
+.footer {
+    --footer-content-justify-items: space-between;
+    --container-max-width: 1480px;
+    /* Adjust to allow 1416px inner width with 32px padding */
+    padding: 80px 0 40px;
+    background-color: var(--color-white);
+    border-top: 1px solid var(--color-border);
+}
+
+.footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.footer__block-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    justify-items: var(--footer-content-justify-items);
+}
+
+.footer__block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.v-stack {
+    display: flex;
+    flex-direction: column;
+}
+
+.gap-2\.5 {
+    gap: 10px;
+}
+
+.gap-4 {
+    gap: 16px;
+}
+
+.gap-5 {
+    gap: 20px;
+}
+
+.h6 {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+
+.prose {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+.prose a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.unstyled-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.link-faded {
+    color: #666;
+    transition: color 0.2s ease;
+}
+
+.link-faded:hover {
+    color: var(--color-text);
+}
+
+/* Form Styles */
+.form-control {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.floating-label {
+    display: none;
+    /* Simplification for now */
+}
+
+.button {
+    background-color: var(--color-text);
+    color: var(--color-white);
+    padding: 14px 32px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    width: fit-content;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+/* Social Media */
+.social-media--list {
+    display: flex;
+    gap: 24px;
+    justify-content: flex-start;
+    margin-top: 24px;
+}
+
+.social-media__item a {
+    color: #666;
+    transition: color 0.2s ease;
+}
+
+.social-media__item a:hover {
+    color: var(--color-text);
+}
+
+/* Aside */
+.footer__aside {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+.localization-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+}
+
+.country-flag {
+    border-radius: 2px;
+}
+
+.footer__copyright {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #999;
+}
+
+.footer__copyright a {
+    text-decoration: underline;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.payment-methods li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive */
+@media screen and (max-width: 999px) {
+    .footer__block-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .footer__block-list {
+        grid-template-columns: 1fr;
+    }
+
+    .footer__aside {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+    }
+}

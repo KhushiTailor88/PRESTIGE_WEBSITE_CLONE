@@ -1,0 +1,135 @@
+.scroll-section {
+  position: relative;
+  width: 100%;
+  color: white;
+}
+
+.scroll-background {
+  position: fixed;
+  inset: 0;
+  background-image: url("https://prestige-theme-allure.myshopify.com/cdn/shop/files/Images_with_text_scroll_-_Background_image_-_Desktop_-_home.jpg?v=1680772698&width=3000");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: -2;
+}
+
+.scroll-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: -1;
+}
+
+.scroll-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.scroll-desktop {
+  display: flex;
+}
+
+.scroll-left {
+  width: 50%;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-image-wrapper {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+
+.scroll-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
+}
+
+.scroll-image.active {
+  opacity: 1;
+}
+
+.scroll-right {
+  width: 50%;
+}
+
+.scroll-text-block {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px;
+}
+
+.scroll-text-inner {
+  max-width: 400px;
+  text-align: center;
+}
+
+.scroll-number {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.scroll-title {
+  font-size: 26px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+.scroll-description {
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.85;
+  margin-bottom: 30px;
+}
+
+.scroll-link {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  padding-bottom: 4px;
+  transition: all 0.3s ease;
+}
+
+.scroll-link:hover {
+  border-color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .scroll-desktop {
+    flex-direction: column;
+  }
+
+  .scroll-left,
+  .scroll-right {
+    width: 100%;
+    position: relative;
+    height: auto;
+  }
+
+  .scroll-text-block {
+    height: auto;
+    padding: 60px 20px;
+  }
+}

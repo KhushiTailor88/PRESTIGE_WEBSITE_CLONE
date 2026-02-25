@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+    /* Colors */
+    --color-text: #1c1c1c;
+    --color-background: #EFEFEF;
+    --color-background-off: #f5f5f5;
+    --color-border: #e8e8e8;
+    --color-accent: #1c1c1c;
+    --color-white: #ffffff;
+
+    /* Typography */
+    --font-heading: 'Instrument Sans', sans-serif;
+    --font-body: 'Nunito', sans-serif;
+
+    /* Spacing */
+    --spacer-xs: 4px;
+    --spacer-sm: 8px;
+    --spacer-md: 16px;
+    --spacer-lg: 32px;
+    --spacer-xl: 100px;
+
+    /* Transition */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Layout */
+    --header-height: 80px;
+    --container-max-width: 1440px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-color: #EFEFEF;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+}
+
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacer-md);
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 var(--spacer-lg);
+    }
+}
+
+/* Base Utility Classes */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 32px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: var(--transition-smooth);
+}
+
+.btn-primary {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-outline {
+    border: 1px solid var(--color-border);
+}
+
+.btn-outline:hover {
+    border-color: var(--color-accent);
+}
+
+.section-spacing {
+   padding: 80px 0;
+    background-color: #EFEFEF;
+}
+
+/* Compensate for adjacent sections to prevent double padding (200px -> 100px) */
+.reveal+.reveal .section-spacing,
+.reveal+.section-spacing,
+.section-spacing+.section-spacing {
+    padding-top: 80px;
+}
+
+
+
+/* Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
+}
+
+.reveal--active {
+    opacity: 1;
+    transform: translateY(0);
+
+}

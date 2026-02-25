@@ -1,0 +1,128 @@
+.collaboration-section {
+  padding: 80px 0;
+  background-color: #efefef;
+}
+
+.collaboration-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.collaboration-grid {
+  display: grid;
+  grid-template-columns: 375px 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* Left Content */
+
+.collaboration-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(28, 28, 28, 0.6);
+  margin-bottom: 15px;
+}
+
+.collaboration-title {
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.collaboration-text {
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 300;
+  color: rgba(28, 28, 28, 0.7);
+  margin-bottom: 30px;
+}
+
+.collaboration-button {
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  border: 1px solid #1c1c1c;
+  color: #ffffff;
+  background: linear-gradient(to right, transparent 50%, #1c1c1c 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: background-position 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+.collaboration-button:hover {
+  background-position: left bottom;
+  color: #1c1c1c;
+  border-color: #1c1c1c;
+}
+
+/* Images Section */
+
+.collaboration-images {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.image-small {
+  width: 280px;
+  aspect-ratio: 2 / 3;
+  position: relative;
+  z-index: 2;
+}
+
+.image-large {
+  width: 380px;
+  aspect-ratio: 2 / 3;
+  margin-left: -100px;
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.image-small img,
+.image-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .collaboration-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .collaboration-images {
+    justify-content: center;
+  }
+
+  .image-large {
+    margin-left: -60px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .collaboration-container {
+    padding: 0 20px;
+  }
+
+  .image-small {
+    width: 200px;
+  }
+
+  .image-large {
+    width: 260px;
+  }
+}
