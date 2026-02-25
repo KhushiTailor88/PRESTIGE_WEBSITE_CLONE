@@ -1,6 +1,9 @@
+import { useRef } from 'react';
 import './BestSellers.css';
 
 const BestSellers = () => {
+    const trackRef = useRef<HTMLDivElement>(null);
+
     const products = [
         {
             id: 1,
@@ -33,8 +36,31 @@ const BestSellers = () => {
             label: 'BEST SELLER',
             image: '//prestige-theme-allure.myshopify.com/cdn/shop/products/Grand-Nova-Lisse-Ivoire-01_c5e43010-e4a3-4dac-97b1-5552659b9a73.jpg?v=1676886728&width=1000',
             imageHover: '//prestige-theme-allure.myshopify.com/cdn/shop/products/Grand-Nova-Lisse-Ivoire-02_348ac141-50cb-4494-983f-723ee1be4298.jpg?v=1677153834&width=1000'
+        },
+        {
+            id: 5,
+            name: 'LE DALIA IVORY LIÉGÉ',
+            price: '$380.00',
+            label: 'BEST SELLER',
+            image: 'https://prestige-theme-allure.myshopify.com/cdn/shop/products/le-tuilli-ivoire1_de480f07-0e23-4872-839f-0503d7cccb76.jpg?v=1676886890&width=1000',
+            imageHover: 'https://prestige-theme-allure.myshopify.com/cdn/shop/products/le-tuilli-ivoire2_0f5ef676-1ffa-4bb6-842f-4d7eaad74dee.jpg?v=1677063525&width=1000'
         }
     ];
+
+    const scroll = (direction: 'next' | 'prev') => {
+        if (!trackRef.current) return;
+        const firstCard = trackRef.current.querySelector('.best-seller-card') as HTMLElement;
+        if (!firstCard) return;
+
+        const cardWidth = firstCard.offsetWidth;
+        const gap = parseInt(getComputedStyle(trackRef.current).gap) || 0;
+        const scrollAmount = cardWidth + gap;
+
+        trackRef.current.scrollBy({
+            left: direction === 'next' ? scrollAmount : -scrollAmount,
+            behavior: 'smooth'
+        });
+    };
 
     return (
         <section className="best-sellers section-spacings">
@@ -48,7 +74,17 @@ const BestSellers = () => {
                 </header>
 
                 <div className="best-sellers__slider-container">
-                    <div className="best-sellers__track">
+                    <button
+                        className="best-sellers__prev"
+                        aria-label="Previous items"
+                        onClick={() => scroll('prev')}
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                            <path d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+
+                    <div className="best-sellers__track" ref={trackRef}>
                         {products.map(product => (
                             <div key={product.id} className="best-seller-card">
                                 <div className="best-seller-card__image-container">
@@ -64,7 +100,12 @@ const BestSellers = () => {
                             </div>
                         ))}
                     </div>
-                    <button className="best-sellers__next" aria-label="Next items">
+
+                    <button
+                        className="best-sellers__next"
+                        aria-label="Next items"
+                        onClick={() => scroll('next')}
+                    >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                             <path d="M9 5l7 7-7 7" />
                         </svg>

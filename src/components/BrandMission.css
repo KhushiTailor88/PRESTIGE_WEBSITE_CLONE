@@ -58,5 +58,5 @@
 }
 
 .brand-mission__links .link:hover {
-    border-bottom: 1px solid #000;
+    border-bottom-color: transparent;
 }
