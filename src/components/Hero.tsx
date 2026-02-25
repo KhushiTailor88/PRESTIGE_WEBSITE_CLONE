@@ -104,6 +104,23 @@ const Hero = () => {
                     />
                 ))}
             </div>
+
+            <button
+                data-action="navigate-next"
+                className="slideshow__next-section-button circle-button circle-button--lg hover:animate-icon-block"
+                onClick={() => {
+                    const hero = document.querySelector('.hero');
+                    const nextSection = hero?.nextElementSibling;
+                    if (nextSection) {
+                        nextSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }}
+            >
+                <span className="sr-only">Navigate to next section</span>
+                <svg aria-hidden="true" focusable="false" fill="none" width="18" className="icon icon-icon-arrow-down" viewBox="0 0 18 16">
+                    <path d="m1 4 8 8 8-8" stroke="currentColor" strokeLinecap="square" strokeWidth="1.2"></path>
+                </svg>
+            </button>
         </section>
     );
 };

@@ -5,7 +5,8 @@
     position: relative;
     height: 100vh;
     width: 100%;
-    overflow: hidden;
+    /* Changed from hidden to allow the navigation button to sit on the boundary */
+    overflow: visible;
     font-family: "Instrument Sans", sans-serif;
 }
 
@@ -176,7 +177,8 @@
 ========================= */
 .hero__dots {
     position: absolute;
-    bottom: 40px;
+    bottom: 60px;
+    /* Moved up slightly to better space from the bottom button */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -197,6 +199,86 @@
 .hero__dot--active {
     background: #fff;
     transform: scale(1.2);
+}
+
+/* =========================
+   NEXT SECTION BUTTON
+========================= */
+.slideshow__next-section-button {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    z-index: 20;
+    padding: 0;
+    color: #1c1c1c;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.circle-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.circle-button--lg {
+    width: 48px;
+    height: 48px;
+}
+
+.circle-button:hover {
+    background-color: #fff;
+}
+
+.slideshow__next-section-button.circle-button:hover {
+    transform: translate(-50%, 50%) scale(1.1);
+}
+
+.slideshow__next-section-button svg {
+    display: block;
+    width: 14px;
+    height: 14px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.hover\:animate-icon-block:hover svg {
+    animation: bounce-slow 2s infinite ease-in-out;
+}
+
+@keyframes bounce-slow {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(4px);
+    }
+
+    60% {
+        transform: translateY(2px);
+    }
 }
 
 /* =========================
