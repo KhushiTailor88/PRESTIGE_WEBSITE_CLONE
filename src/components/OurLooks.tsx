@@ -1,5 +1,4 @@
 import React from 'react';
-import './OurLooks.css';
 
 const OurLooks = () => {
     // Extracted from Shopify reference HTML
@@ -81,30 +80,51 @@ const OurLooks = () => {
     const currentProduct = currentLook.products[activeProductIndex];
 
     return (
-        <section className="our-looks">
-            <div className="our-looks__container">
+        <section className="bg-brand-bg py-20 font-heading">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-10 relative group/nav">
                 {/* Header */}
-                <div className="our-looks__header">
-                    <span className="our-looks__label">SHOP</span>
-                    <h2 className="our-looks__title">OUR LOOKS</h2>
+                <div className="text-center mb-[60px]">
+                    <span className="text-[11px] tracking-[0.25em] uppercase text-[#777] block mb-5">SHOP</span>
+                    <h2 className="text-[32px] md:text-[40px] font-normal tracking-[0.12em] uppercase text-text">OUR LOOKS</h2>
                 </div>
 
+                {/* Navigation Arrows for Section ( Repositioned outside image ) */}
+                <button
+                    onClick={prevSlide}
+                    className="absolute top-[60%] -translate-y-1/2 left-2 md:left-4 xl:-left-16 w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-brand-white border border-[#e5e5e5] flex items-center justify-center cursor-pointer transition-all duration-300 z-[10] text-text hover:bg-text hover:text-brand-white hover:border-text opacity-0 group-hover/nav:opacity-100 shadow-sm"
+                    aria-label="Previous look"
+                >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M15 5l-7 7 7 7" />
+                    </svg>
+                </button>
+
+                <button
+                    onClick={nextSlide}
+                    className="absolute top-[60%] -translate-y-1/2 right-2 md:right-4 xl:-right-16 w-[44px] h-[44px] md:w-[52px] md:h-[52px] rounded-full bg-brand-white border border-[#e5e5e5] flex items-center justify-center cursor-pointer transition-all duration-300 z-[10] text-text hover:bg-text hover:text-brand-white hover:border-text opacity-0 group-hover/nav:opacity-100 shadow-sm"
+                    aria-label="Next look"
+                >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+
                 {/* Content Grid */}
-                <div className="our-looks__grid">
-                    {/* Left: Lifestyle Image with Navigation and Hotspots */}
-                    <div className="our-looks__image-wrapper">
-                        <div className="our-looks__image-container">
+                <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-[60px] lg:gap-[100px] items-center  ">
+                    {/* Left: Lifestyle Image with Hotspots */}
+                    <div className="relative">
+                        <div className="relative aspect-square lg:aspect-[4/5] overflow-hidden">
                             <img
                                 src={currentLook.mainImage}
                                 alt="Lifestyle"
-                                className="our-looks__image"
+                                className="w-full h-full object-cover block"
                             />
 
                             {/* Render Hotspots for the active look */}
                             {currentLook.products.map((product, index) => (
                                 <button
                                     key={product.id}
-                                    className={`our-looks__hotspot ${index === activeProductIndex ? 'our-looks__hotspot--active' : ''}`}
+                                    className={`absolute w-6 h-6 -ml-3 -mt-3 bg-transparent border-none cursor-pointer flex items-center justify-center z-10 group/hotspot transition-all duration-300`}
                                     style={{
                                         top: product.hotspot.top,
                                         left: product.hotspot.left
@@ -112,73 +132,52 @@ const OurLooks = () => {
                                     onClick={() => setActiveProductIndex(index)}
                                     aria-label={`View ${product.name}`}
                                 >
-                                    <span className="our-looks__hotspot-inner"></span>
+                                    <span className={`block w-2 h-2 bg-brand-white rounded-full transition-all duration-300 ${index === activeProductIndex ? 'scale-[1.5] bg-text shadow-[0_0_0_2px_#fff]' : 'shadow-[0_0_0_2px_rgba(28,28,28,0.15)] group-hover/hotspot:scale-[1.5] group-hover/hotspot:bg-text group-hover/hotspot:shadow-[0_0_0_2px_#fff]'}`}></span>
                                 </button>
                             ))}
                         </div>
-
-                        {/* Navigation Arrows for Main Look */}
-                        <button
-                            onClick={prevSlide}
-                            className="our-looks__nav-button our-looks__nav-button--prev"
-                            aria-label="Previous look"
-                        >
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                <path d="M15 5l-7 7 7 7" />
-                            </svg>
-                        </button>
-
-                        <button
-                            onClick={nextSlide}
-                            className="our-looks__nav-button our-looks__nav-button--next"
-                            aria-label="Next look"
-                        >
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                <path d="M9 5l7 7-7 7" />
-                            </svg>
-                        </button>
                     </div>
 
                     {/* Right: Product Showcase Based on Active Hotspot */}
-                    <div className="our-looks__product">
-                        <span className="our-looks__product-label">
-                            {currentProduct.label || '\u00A0'} {/* Non-breaking space to preserve layout if no label */}
+                    <div className="text-center px-5 py-10 lg:py-0">
+                        <span className="text-[11px] tracking-[0.25em] uppercase text-[#999] block mb-5">
+                            {currentProduct.label || '\u00A0'}
                         </span>
 
-                        <div className="our-looks__product-image-wrapper">
+                        <div className="relative mb-10 aspect-square overflow-hidden group/product">
                             <img
                                 src={currentProduct.imagePrimary}
                                 alt={currentProduct.name}
-                                className={`our-looks__product-image ${currentProduct.imageHover ? 'our-looks__product-image--primary' : ''}`}
+                                className={`absolute top-0 left-0 w-full h-full object-cover block transition-all duration-500 ease-in-out group-hover/product:scale-105 ${currentProduct.imageHover ? 'opacity-100 group-hover/product:opacity-0' : 'opacity-100'}`}
                             />
                             {currentProduct.imageHover && (
                                 <img
                                     src={currentProduct.imageHover}
                                     alt={`${currentProduct.name} Hover`}
-                                    className="our-looks__product-image our-looks__product-image--hover"
+                                    className="absolute top-0 left-0 w-full h-full object-cover block transition-all duration-500 ease-in-out opacity-0 group-hover/product:opacity-100 group-hover/product:scale-105"
                                 />
                             )}
                         </div>
 
-                        <h3 className="our-looks__product-name">
-                            <a href={currentProduct.handle}>{currentProduct.name}</a>
+                        <h3 className="text-sm tracking-[0.12em] font-normal uppercase mb-4 text-text">
+                            <a href={currentProduct.handle} className="hover:opacity-70 transition-opacity">{currentProduct.name}</a>
                         </h3>
 
-                        <p className="our-looks__product-price">
+                        <p className="text-[15px] mb-5 text-[#666]">
                             {currentProduct.price}
                         </p>
 
-                        <a href={currentProduct.handle} className="our-looks__cta">
+                        <a href={currentProduct.handle} className="inline-block px-[52px] py-4 text-xs tracking-[0.18em] uppercase border border-text bg-text text-brand-white transition-all duration-400 no-underline hover:bg-transparent hover:text-text">
                             VIEW PRODUCT
                         </a>
 
                         {/* Pagination Dots for Products in Current Look */}
-                        <div className="our-looks__pagination">
+                        <div className="flex justify-center gap-[14px] mt-10">
                             {currentLook.products.map((_, index) => (
                                 <button
                                     key={index}
                                     onClick={() => setActiveProductIndex(index)}
-                                    className={`our-looks__dot ${index === activeProductIndex ? 'our-looks__dot--active' : ''}`}
+                                    className={`w-2 h-2 rounded-full border-none cursor-pointer transition-all duration-300 ${index === activeProductIndex ? 'bg-text' : 'bg-[#d0d0d0]'}`}
                                     aria-label={`Select product ${index + 1}`}
                                 />
                             ))}

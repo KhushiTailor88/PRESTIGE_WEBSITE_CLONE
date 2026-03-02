@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./HomeScrollSections.css";
 
 interface ScrollItem {
   number: string;
@@ -59,40 +58,52 @@ const ScrollingImages: React.FC = () => {
   }, []);
 
   return (
-    <section className="scroll-section">
-      <div className="scroll-background" />
-      <div className="scroll-overlay" />
+    <section className="relative w-full text-brand-white">
+      {/* Background and Overlay */}
+      <div className="fixed inset-0 bg-[url('/Background_image1.webp')] bg-cover bg-center bg-fixed z-0" />
+      <div className="fixed inset-0 bg-black/35 z-[1]" />
 
-      <div className="scroll-container">
-        <div className="scroll-desktop">
-          <div className="scroll-left">
-            <div className="scroll-image-wrapper">
+      <div className="relative z-[2] max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
+        <div className="flex flex-col md:flex-row">
+          {/* Left: Sticky Image (Desktop) */}
+          <div className="w-full md:w-1/2 h-auto md:h-screen sticky top-0 md:flex md:items-center md:justify-center hidden md:block">
+            <div className="relative w-[400px] aspect-[4/5] overflow-hidden">
               {items.map((item, index) => (
                 <img
                   key={index}
                   src={item.image}
                   alt={item.title}
-                  className={`scroll-image ${activeIndex === index ? "active" : ""
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${activeIndex === index ? "opacity-100" : "opacity-0"
                     }`}
                 />
               ))}
             </div>
           </div>
 
-          <div className="scroll-right">
+          {/* Right: Scrolling Text (Desktop/Mobile) */}
+          <div className="w-full md:w-1/2">
             {items.map((item, index) => (
               <div
                 key={index}
                 ref={(el) => {
                   itemRefs.current[index] = el;
                 }}
-                className="scroll-text-block"
+                className="min-h-screen flex items-center justify-center p-10 md:p-20"
               >
-                <div className="scroll-text-inner">
-                  <p className="scroll-number">{item.number}</p>
-                  <h3 className="scroll-title">{item.title}</h3>
-                  <p className="scroll-description">{item.text}</p>
-                  <a href={item.linkUrl} className="scroll-link">
+                <div className="max-w-[400px] text-center">
+                  {/* Mobile Image (Show only on small screens) */}
+                  <div className="md:hidden relative w-full aspect-[4/5] overflow-hidden mb-10">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <p className="text-xs tracking-[0.25em] uppercase opacity-70 mb-5 font-heading">{item.number}</p>
+                  <h3 className="text-2xl md:text-[26px] tracking-[0.15em] uppercase font-normal mb-[25px] font-heading">{item.title}</h3>
+                  <p className="text-[15px] leading-relaxed opacity-85 mb-[30px] font-body">{item.text}</p>
+                  <a href={item.linkUrl} className="text-xs tracking-[0.18em] uppercase no-underline border-b border-brand-white/40 pb-1 transition-all duration-300 hover:border-brand-white font-heading">
                     {item.linkText}
                   </a>
                 </div>

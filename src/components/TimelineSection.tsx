@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './TimelineSection.css';
 
 interface TimelineEvent {
     year: string;
@@ -65,43 +64,56 @@ const TimelineSection: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <section className="timeline-section">
-            <div className="timeline-container">
-                <div className="timeline-grid">
+        <section className="bg-brand-bg py-20 font-heading">
+            <div className="max-w-[1440px] mx-auto px-4 lg:px-[100px] md:px-0">
+                <div className="grid grid-cols-1 lg:grid-cols-2 bg-brand-white min-h-[500px]">
                     {/* Image Block */}
-                    <div className="timeline-image-wrapper">
+                    <div className="relative overflow-hidden min-h-[400px]">
                         {timelineData.map((item, index) => (
                             <img
                                 key={index}
                                 src={item.image}
                                 srcSet={item.srcSet}
                                 alt={item.title}
-                                className={`timeline-image ${activeIndex === index ? 'active' : ''}`}
+                                className={`absolute inset-0 w-full h-full object-cover transition-all duration-600 ease-in-out ${activeIndex === index ? 'opacity-100 scale-100 z-[1]' : 'opacity-0 scale-[1.05] z-0'
+                                    }`}
                             />
                         ))}
                     </div>
 
                     {/* Content Block */}
-                    <div className="timeline-content">
+                    <div className="relative flex flex-col justify-center p-10 lg:p-[80px_10%]">
                         {timelineData.map((item, index) => (
                             <div
                                 key={index}
-                                className={`timeline-content-inner ${activeIndex === index ? 'active' : ''}`}
+                                className={`transition-all duration-500 ease-in-out ${activeIndex === index
+                                    ? 'relative opacity-100 visible translate-y-0 w-full'
+                                    : 'absolute opacity-0 invisible translate-y-5 w-4/5 left-[10%]'
+                                    }`}
                             >
-                                <span className="timeline-subtitle">{item.subtitle}</span>
-                                <h2 className="timeline-title">{item.title}</h2>
-                                <p className="timeline-description">{item.description}</p>
+                                <span className="block text-[13px] tracking-[0.25em] uppercase text-[#171717] mb-[30px] font-heading">
+                                    {item.subtitle}
+                                </span>
+                                <h2 className="text-2xl md:text-[32px] tracking-[0.15em] uppercase font-normal mb-[30px] text-[#171717] font-heading">
+                                    {item.title}
+                                </h2>
+                                <p className="text-[15px] leading-relaxed text-[#4a4a4a] font-light font-body">
+                                    {item.description}
+                                </p>
                             </div>
                         ))}
                     </div>
                 </div>
 
                 {/* Navigation Bar */}
-                <div className="timeline-nav">
+                <div className="flex justify-center gap-5 md:gap-10 mt-[60px] flex-wrap">
                     {timelineData.map((item, index) => (
                         <button
                             key={index}
-                            className={`timeline-nav-item ${activeIndex === index ? 'active' : ''}`}
+                            className={`font-body text-sm cursor-pointer relative pb-2 transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[1px] after:bg-[#171717] after:transition-all after:duration-300 ${activeIndex === index
+                                ? 'text-[#171717] after:w-full'
+                                : 'text-[#777] after:w-0 hover:text-[#171717]'
+                                }`}
                             onClick={() => setActiveIndex(index)}
                         >
                             {item.year}

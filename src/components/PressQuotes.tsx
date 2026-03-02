@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './PressQuotes.css';
 
 interface QuoteItem {
     id: number;
@@ -41,26 +40,26 @@ const PressQuotes: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <section className="press-quotes">
-            <div className="press-quotes__container">
-                <div className="press-quotes__quote-wrapper">
-                    <p key={activeIndex} className="press-quotes__quote fade-in">
+        <section className="bg-[#171717] text-brand-white py-20 md:py-[100px] text-center">
+            <div className="container px-10">
+                <div className="max-w-[580px] mx-auto mb-[60px]">
+                    <p key={activeIndex} className="font-body text-base md:text-[20px] font-light leading-[1.8] text-brand-white/90 animate-fade-in">
                         {quotes[activeIndex].text}
                     </p>
                 </div>
 
-                <div className="press-quotes__logos">
+                <div className="flex flex-col md:flex-row justify-center items-center gap-10 md:gap-20">
                     {quotes.map((quote, index) => (
                         <div
                             key={quote.id}
-                            className={`press-quotes__logo ${activeIndex === index ? 'active' : ''}`}
+                            className={`transition-all duration-400 cursor-pointer ${activeIndex === index ? 'opacity-100 scale-100' : 'opacity-30 Active:opacity-100'}`}
                             onClick={() => setActiveIndex(index)}
                         >
                             <img
                                 src={quote.logoSrc}
                                 srcSet={quote.logoSrcSet}
                                 alt={quote.logoAlt}
-                                className="logo-white"
+                                className="brightness-0 invert h-auto max-w-[120px] object-contain md:[height:quote.logoHeight]"
                                 style={{ height: quote.logoHeight }}
                             />
                         </div>

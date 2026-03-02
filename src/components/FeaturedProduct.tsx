@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './FeaturedProduct.css';
 
 const FeaturedProduct: React.FC = () => {
     const images = [
@@ -13,31 +12,32 @@ const FeaturedProduct: React.FC = () => {
     const [currentImage, setCurrentImage] = useState(0);
 
     return (
-        <section className="featured-product section-spacing">
+        <section className="bg-[#efefef] py-20 font-heading border-t border-[#e0e0e0]">
             <div className="container">
-                <header className="featured-product__header">
-                    <span className="featured-product__subtitle">OUR SELECTION</span>
-                    <h2 className="featured-product__main-title">PRODUCT OF THE WEEK</h2>
+                <header className="text-center mb-[60px]">
+                    <span className="block text-xs tracking-[0.25em] uppercase text-[#6e6e6e] mb-[18px] font-normal">OUR SELECTION</span>
+                    <h2 className="text-[32px] md:text-[28px] font-normal tracking-[0.18em] uppercase text-[#3a3a3a]">PRODUCT OF THE WEEK</h2>
                 </header>
 
-                <div className="featured-product__content">
-                    <div className="featured-product__gallery">
-                        <div className="featured-product__image-list">
+                <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-20 items-start">
+                    {/* Gallery */}
+                    <div className="relative w-full">
+                        <div className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar featured-product-image-list">
                             {images.map((img, index) => (
-                                <div key={index} className="featured-product__image-item">
-                                    <img src={img} alt={`Featured Product ${index + 1}`} />
+                                <div key={index} className="flex-[0_0_100%] snap-center">
+                                    <img src={img} alt={`Featured Product ${index + 1}`} className="w-full h-auto block" />
                                 </div>
                             ))}
                         </div>
-                        <div className="featured-product__pagination">
+                        <div className="flex justify-center gap-3 mt-[25px]">
                             {images.map((_, index) => (
                                 <button
                                     key={index}
-                                    className={`featured-product__dot ${currentImage === index ? 'active' : ''}`}
+                                    className={`w-1.5 h-1.5 rounded-full p-0 transition-colors duration-300 ${currentImage === index ? 'bg-text' : 'bg-[#d1d1d1]'}`}
                                     aria-label={`Go to image ${index + 1}`}
                                     onClick={() => {
                                         setCurrentImage(index);
-                                        const gallery = document.querySelector('.featured-product__image-list');
+                                        const gallery = document.querySelector('.featured-product-image-list');
                                         if (gallery) {
                                             gallery.scrollTo({
                                                 left: index * gallery.clientWidth,
@@ -50,32 +50,33 @@ const FeaturedProduct: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="featured-product__info">
-                        <div className="featured-product__info-sticky">
-                            <span className="featured-product__badge">NEW</span>
-                            <h3 className="featured-product__title">LE CONTINENTAL CAMEL LIÉGÉ</h3>
-                            <div className="featured-product__price">$200.00</div>
+                    {/* Info */}
+                    <div className="relative">
+                        <div className="lg:sticky lg:top-[100px]">
+                            <span className="inline-block text-[11px] tracking-[0.2em] color-[#6e6e6e] mb-[15px] uppercase font-medium">NEW</span>
+                            <h3 className="text-[28px] font-normal leading-[1.3] tracking-[0.1em] mb-[10px] uppercase text-[#3a3a3a]">LE CONTINENTAL CAMEL LIÉGÉ</h3>
+                            <div className="text-xl text-[#3a3a3a] mb-[30px] tracking-[0.05em]">$200.00</div>
 
-                            <hr className="featured-product__divider" />
+                            <hr className="border-none border-t border-[#e0e0e0] mb-[30px]" />
 
-                            <p className="featured-product__description">
+                            <p className="text-sm leading-[1.8] text-[#4a4a4a] mb-10 font-body">
                                 Continental wallet in calfskin. Inside zip pocket for coins. 2 flat pockets for checks or bills. Leather lining. Heat embossed logo.
                             </p>
 
-                            <div className="featured-product__option">
-                                <span className="featured-product__option-label">Color: Camel Liégé</span>
-                                <div className="featured-product__swatches">
-                                    <button className="featured-product__swatch active" style={{ backgroundColor: '#A66E4E' }} aria-label="Camel Liégé" />
+                            <div className="mb-10">
+                                <span className="block text-sm mb-[15px] text-text">Color: Camel Liégé</span>
+                                <div className="flex gap-3">
+                                    <button className="w-8 h-8 border border-text p-0.5 bg-clip-content cursor-pointer" style={{ backgroundColor: '#A66E4E' }} aria-label="Camel Liégé" />
                                 </div>
                             </div>
 
-                            <div className="featured-product__actions">
-                                <div className="featured-product__quantity">
-                                    <button className="qty-btn" aria-label="Decrease quantity">−</button>
-                                    <input type="text" value="1" readOnly />
-                                    <button className="qty-btn" aria-label="Increase quantity">+</button>
+                            <div className="flex flex-col gap-5">
+                                <div className="flex items-center border border-[#e0e0e0] w-fit h-[50px]">
+                                    <button className="w-[50px] h-full flex items-center justify-center text-lg text-text" aria-label="Decrease quantity">−</button>
+                                    <input type="text" value="1" readOnly className="w-10 border-none text-center text-[15px] bg-transparent pointer-events-none" />
+                                    <button className="w-[50px] h-full flex items-center justify-center text-lg text-text" aria-label="Increase quantity">+</button>
                                 </div>
-                                <button className="btn btn-primary featured-product__add-to-cart">
+                                <button className="w-full h-[55px] bg-text text-brand-white uppercase tracking-[0.2em] text-sm font-medium border border-text transition-all duration-400 hover:bg-transparent hover:text-text">
                                     ADD TO CART
                                 </button>
                             </div>

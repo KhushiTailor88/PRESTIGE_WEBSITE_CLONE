@@ -1,20 +1,19 @@
 import React from "react";
-import "./ScrollingContent.css";
 
 const ScrollingText: React.FC = () => {
   const topLineContent = (
     <>
       {[...Array(2)].map((_, i: number) => (
-        <div key={i} className="scroll-item">
-          <span className="scroll-text">
+        <div key={i} className="flex items-center gap-10 px-4">
+          <span className="text-[40px] md:text-[64px] font-normal text-[#b3b3b3] tracking-[1px] font-heading whitespace-nowrap">
             NEW: LE SAC BAGUETTE
           </span>
 
-          <div className="scroll-image">
+          <div className="w-[60px] md:w-20 h-[60px] md:h-20 flex-shrink-0">
             <img
               src="https://prestige-theme-allure.myshopify.com/cdn/shop/files/Scrolling_content_-_home_-_sac._-baguette.jpg?v=1680765474&width=500"
               alt="Le Sac Baguette"
-              className="image-contain"
+              className="w-full h-full object-contain"
             />
           </div>
         </div>
@@ -25,16 +24,16 @@ const ScrollingText: React.FC = () => {
   const bottomLineContent = (
     <>
       {[...Array(2)].map((_, i: number) => (
-        <div key={i} className="scroll-item bottom-item">
-          <div className="scroll-image">
+        <div key={i} className="flex items-center gap-10 px-6">
+          <div className="w-[60px] md:w-20 h-[60px] md:h-20 flex-shrink-0">
             <img
               src="https://prestige-theme-allure.myshopify.com/cdn/shop/files/Scrolling_content_-_home_-_new.jpg?v=1680765940&width=500"
               alt="New Arrivals"
-              className="image-contain"
+              className="w-full h-full object-contain"
             />
           </div>
 
-          <span className="scroll-text">
+          <span className="text-[40px] md:text-[64px] font-normal text-[#b3b3b3] tracking-[1px] font-heading whitespace-nowrap">
             SHOP NEW ARRIVALS
           </span>
         </div>
@@ -43,18 +42,18 @@ const ScrollingText: React.FC = () => {
   );
 
   return (
-    <section className="scroll-section">
+    <section className="bg-brand-bg py-8 overflow-hidden">
       {/* Top Line */}
-      <div className="scroll-line top-line">
-        <div className="scroll-track marquee-left">
+      <div className="flex whitespace-nowrap py-10 border border-text/10">
+        <div className="flex animate-marquee-left">
           {topLineContent}
           {topLineContent}
         </div>
       </div>
 
       {/* Bottom Line */}
-      <div className="scroll-line bottom-line">
-        <div className="scroll-track marquee-right">
+      <div className="flex whitespace-nowrap py-10 border-b border-text/10">
+        <div className="flex animate-marquee-right">
           {bottomLineContent}
           {bottomLineContent}
         </div>

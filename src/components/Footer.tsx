@@ -56,8 +56,8 @@ const Footer: React.FC = () => {
                                 </div>
                                 <form className="form">
                                     <div className="form-control">
-                                        <input className="input" type="email" placeholder="E-mail" required />
-                                        <label className="floating-label text-xs">E-mail</label>
+                                        <input className="input" type="email" placeholder=" " required />
+                                        <label className="floating-label">E-mail</label>
                                     </div>
                                     <div className="align-self-start">
                                         <button type="submit" className="button">SUBSCRIBE</button>

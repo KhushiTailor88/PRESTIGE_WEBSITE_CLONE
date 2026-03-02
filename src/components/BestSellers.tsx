@@ -1,15 +1,33 @@
-import { useRef } from 'react';
-import './BestSellers.css';
+import { useRef, useState, useEffect } from 'react';
 
 const BestSellers = () => {
     const trackRef = useRef<HTMLDivElement>(null);
+    const [isHovering, setIsHovering] = useState(false);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(true);
+
+    const updateScrollState = () => {
+        if (!trackRef.current) return;
+        const { scrollLeft, scrollWidth, clientWidth } = trackRef.current;
+        setCanScrollLeft(scrollLeft > 5);
+        setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
+    };
+
+    useEffect(() => {
+        const track = trackRef.current;
+        if (track) {
+            updateScrollState();
+            window.addEventListener('resize', updateScrollState);
+            return () => window.removeEventListener('resize', updateScrollState);
+        }
+    }, []);
 
     const products = [
         {
             id: 1,
             name: 'LE MINI DALIA BLACK LIÉGÉ',
             price: '$350.00',
-            label: 'NEW',
+
             image: 'https://prestige-theme-allure.myshopify.com/cdn/shop/products/Le-Mini-Dalia-Lisse-Noir-04.webp?v=1677224925&width=800',
             imageHover: 'https://prestige-theme-allure.myshopify.com/cdn/shop/products/Le-Mini-Dalia-Lisse-Noir-01.webp?v=1677224916&width=800'
         },
@@ -49,11 +67,11 @@ const BestSellers = () => {
 
     const scroll = (direction: 'next' | 'prev') => {
         if (!trackRef.current) return;
-        const firstCard = trackRef.current.querySelector('.best-seller-card') as HTMLElement;
+        const firstCard = trackRef.current.querySelector('[data-card]') as HTMLElement;
         if (!firstCard) return;
 
         const cardWidth = firstCard.offsetWidth;
-        const gap = parseInt(getComputedStyle(trackRef.current).gap) || 0;
+        const gap = 32; // Default gap from CSS (spacer-lg equivalent)
         const scrollAmount = cardWidth + gap;
 
         trackRef.current.scrollBy({
@@ -63,19 +81,24 @@ const BestSellers = () => {
     };
 
     return (
-        <section className="best-sellers section-spacings">
-            <div className="container">
-                <header className="best-sellers__header">
-                    <span className="best-sellers__subtitle">OUR BEST SELLERS</span>
-                    <div className="best-sellers__tabs">
-                        <button className="best-sellers__tab best-sellers__tab--active">WOMEN</button>
-                        <button className="best-sellers__tab">MEN</button>
+        <section className="bg-red py-[105px] font-heading">
+
+            <div className="container max-w-[1440px] px-10">
+                <header className="text-center mb-8 flex flex-col items-center">
+                    <span className="text-[10px] tracking-[0.25em] font-semibold text-text uppercase block mb-8 opacity-60">OUR BEST SELLERS</span>
+                    <div className="flex justify-center gap-10 px-12 -mx-12">
+                        <button className="font-normal text-[28px] text-text uppercase tracking-[0.05em] relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-full after:height-[1px] after:bg-text">WOMEN</button>
+                        <button className="font-normal text-[28px] text-text uppercase tracking-[0.05em] relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-full after:h-px after:bg-text">MEN</button>
                     </div>
                 </header>
 
-                <div className="best-sellers__slider-container">
+                <div
+                    className="relative"
+                    onMouseEnter={() => setIsHovering(true)}
+                    onMouseLeave={() => setIsHovering(false)}
+                >
                     <button
-                        className="best-sellers__prev"
+                        className={`absolute top-1/2 -translate-y-1/2 -left-5 w-11 h-11 bg-brand-grey rounded-full shadow-sm flex items-center justify-center z-[5] transition-all duration-300 hover:scale-110 cursor-pointer ${isHovering && canScrollLeft ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
                         aria-label="Previous items"
                         onClick={() => scroll('prev')}
                     >
@@ -84,25 +107,29 @@ const BestSellers = () => {
                         </svg>
                     </button>
 
-                    <div className="best-sellers__track" ref={trackRef}>
+                    <div
+                        className="flex gap-8 overflow-x-auto snap-x snap-mandatory no-scrollbar"
+                        ref={trackRef}
+                        onScroll={updateScrollState}
+                    >
                         {products.map(product => (
-                            <div key={product.id} className="best-seller-card">
-                                <div className="best-seller-card__image-container">
-                                    <span className="best-seller-card__label">{product.label}</span>
-                                    <img src={product.image} alt={product.name} className={`best-seller-card__image ${product.imageHover ? 'best-seller-card__image--primary' : ''}`} />
-                                    {product.imageHover && <img src={product.imageHover} alt={`${product.name} hover view`} className="best-seller-card__image best-seller-card__image--hover" />}
-                                    <button className="best-seller-card__add" aria-label="Add to cart">+</button>
+                            <div key={product.id} className="flex-[0_0_calc(85%-32px)] sm:flex-[0_0_calc(50%-32px)] lg:flex-[0_0_calc(25%-32px)] snap-start text-left group" data-card>
+                                <div className="relative aspect-[4/5] mb-4 overflow-hidden bg-[#efefef]">
+                                    <span className="absolute top-5 left-0 text-[9px] font-bold tracking-[0.15em] text-[#666] uppercase z-[2]">{product.label}</span>
+                                    <img src={product.image} alt={product.name} className={`w-full h-full object-contain transition-all duration-700 group-hover:scale-105 ${product.imageHover ? 'opacity-100 group-hover:opacity-0' : ''}`} />
+                                    {product.imageHover && <img src={product.imageHover} alt={`${product.name} hover view`} className="absolute top-0 left-0 w-full h-full object-contain opacity-0 group-hover:opacity-100 transition-all duration-700" />}
+                                    <button className="absolute right-0 bottom-6 w-11 h-11 bg-brand-white flex items-center justify-center text-xl text-text z-[2] opacity-0 translate-y-2.5 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 cursor-pointer" aria-label="Add to cart">+</button>
                                 </div>
-                                <div className="best-seller-card__info">
-                                    <h3 className="best-seller-card__name">{product.name}</h3>
-                                    <span className="best-seller-card__price">{product.price}</span>
+                                <div className="text-center px-2">
+                                    <h3 className="text-xs font-semibold tracking-[0.12em] mb-2 uppercase leading-[1.4] text-text">{product.name}</h3>
+                                    <span className="text-[11px] text-[#666] tracking-[0.05em]">{product.price}</span>
                                 </div>
                             </div>
                         ))}
                     </div>
 
                     <button
-                        className="best-sellers__next"
+                        className={`absolute top-1/2 -translate-y-1/2 -right-5 w-11 h-11 bg-brand-white rounded-full shadow-sm flex items-center justify-center z-[5] transition-all duration-300 hover:scale-110 cursor-pointer ${isHovering && canScrollRight ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
                         aria-label="Next items"
                         onClick={() => scroll('next')}
                     >
@@ -112,8 +139,10 @@ const BestSellers = () => {
                     </button>
                 </div>
 
-                <div className="best-sellers__footer">
-                    <button className="best-sellers__cta">ALL WOMEN'S BAGS</button>
+                <div className="flex justify-center mt-12">
+                    <button className=" border-tighter relative overflow-hidden bg-text text-brand-white border border-text px-[39px] py-[15px] text-[11px] font-bold tracking-[0.2em] uppercase cursor-pointer transition-all duration-400 hover:bg-transparent hover:text-text group/cta hover:border-tighter">
+                        ALL WOMEN'S BAGS
+                    </button>
                 </div>
             </div>
         </section>
